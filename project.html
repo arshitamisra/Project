@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title> Where to go in Seattle? </title>
+<style>
+    body {background-color:black;color:white;font-family:Optima, serif;}
+    form {position:relative;bottom:2em;}
+    h1 {font-family:copperplate,fantasy;font-size:3em;}
+    img {width:100%;}
+    h2 {font-size:1.2em;}
+    /*position:relative;bottom:2em;}*/
+    a[submit="I'm ready to explore!"] {color:yellow;}
+    img{position:relative;
+    bottom:2em;
+    z-index:-1;}
+    script {color:white}
+
+    .occassion{
+        float:left;
+    }
+    .location{
+        /*padding-top:3em;*/
+        padding-left:1em;
+        float:left;
+    }
+    .submit{
+        clear:both;
+        text-align: center;
+    }
+    #submit{
+        margin-top:2em;
+    }
+    .open{
+        padding-top:2em;
+        padding-left:1em;
+    }
+
+</style>
+<script>
+	function getLocation() {
+	    if (navigator.geolocation) {
+	        navigator.geolocation.getCurrentPosition(fillPosition);
+	    } else {
+	       alert("Geolocation is not supported by this browser.");
+	    }
+	}
+	function fillPosition(position){
+		var lat = document.getElementById("lat");
+		var lon = document.getElementById("lng");
+		lat.value = position.coords.latitude;
+		lon.value = position.coords.longitude;
+	}
+	</script>
+</head>
+<body>
+    <h1><center>Exploring Seattle</center></h1>
+    <img src="https://digital-photography-school.com/wp-content/uploads/2012/09/Peter-West-Carey-Seattle2012-0908-6437-15.jpg" alt="seattle skyline">
+    <form action="output" method="get">
+        <div class='occassion'>
+            <h2>Choose an occassion</h2>
+            <input type="checkbox" name="occassion" value="Coffee and tea time" id="Coffee and tea time"/>
+            <label for="Coffee and tea time">Coffee and tea time</label><br />
+            <input type="checkbox" name="occassion" value="Fun day out" id="Fun day out">
+            <label for="Fun day out">Fun day out</label><br />
+            <input type="checkbox" name="occassion" value="Dessert time!" id="Dessert time!">
+            <label for="Dessert time!">Sweet tooth! Dessert time</label><br />
+            <input type="checkbox" name="occassion" value="Time to party!" id="Time to party!">
+            <label for="Time to party!">its a party night</label><br />
+            <input type="checkbox" name="occassion" value="Serene study spaces" id="Serene study space">
+            <label for="Serene study space">Serene study spaces</label><br />
+            <input type="checkbox" name="occassion" value="Eat food from around the world!" id="Eat food from around the world!">
+            <label for="Eat food from around the world!">Eat food from around the world!</label><br />
+            <input id='submit' type="submit" value="I'm ready to explore!" name="gobtn"/>
+        </div>
+        <div class='location'>
+            <h2>How far can I go?</h2>
+            <input type="hidden" name="lat" id="lat"/>
+    		<input type="hidden" name="lng" id="lng"/>
+    		<input type="button" value="Use my location" name="getLoc" id="getloc" onclick="getLocation()"/><br />
+            <select id="radius" name="radius">
+                <option value="1">1 miles</option>
+                <option value="3">3 miles</option>
+                <option value="5">5 miles</option>
+                <option value="7">7 miles</option>
+                <option value="10" selected>10 miles</option>
+            </select><br />
+            <br>
+            <input type="checkbox" name="open_now" value="Open now" id="Open now">
+            <label for="Open now">Open now</label>
+            <br>
+        </div>
+
+    </form>
+</body>
+</html>

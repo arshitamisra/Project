@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ideas for occassions</title>
+        <style>
+        body {
+            background-color:#322F2F;
+            color:white;
+            font-family:gill sans,sans-serif;
+        }
+        h1 {
+            font-family:copperplate, fantasy;
+        }
+        #activities{
+		    text-align:left;
+        }
+        .business{
+            background-color:black;
+            padding:0.5em;
+            border-style:solid;
+            border-width:thin;
+            border-color:white;
+            border-radius:8%;
+            box-shadow: 0 0 0.25em 0.25em rgba(0, 0, 0, 0.25);
+            width:15em;
+            height:35em;
+    	    flex-grow:1;
+		    float:left;
+    	    margin-bottom:1em;
+            margin-right:1em;
+        }
+        .activity{
+            clear:both;
+        }
+        </style>
+    </head>
+    <body>
+        <div id="activities">
+            {% for activity in dcat%}
+            <div class="activity">
+                <center><h1>{{activity}}</h1></center>
+                    {% for biz in dcat[activity]%}
+                    {% if biz['photos'] or biz['phone'] or biz['location'] or biz['url']%}
+                    <table class="business">
+                    <tr>
+                    <th><center><h3>{{biz['name']}}</h3></center></th>
+                    </tr>
+                    <tr><td><img src="{{biz['photos'][0]}}" width="200" length ="200"></td></tr>
+                    <tr><td>Rating: {{biz['rating']}}</td></tr>
+                    <tr><td>Contact number: {{biz['phone']}}</td></tr>
+                    {% if biz['distance'] %}
+                    <tr><td>Distance: {{biz['distance']}} miles</td></tr>
+                    {% endif %}
+                    <tr>
+                        <td>Address:
+                        {% for addy in biz['location']['display_address']%}
+                        {{addy}}
+                        {% endfor %}</td>
+                    </tr>
+                    <tr><td><a href="{{biz['url']}}">Learn more</a></td></tr>
+                    </table>
+
+                    {% endif %}
+                    {% endfor %}
+
+            </div>
+            {% endfor %}
+        </div>
+    </body>
+</html>
